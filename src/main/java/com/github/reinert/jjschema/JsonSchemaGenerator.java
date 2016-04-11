@@ -271,7 +271,7 @@ public abstract class JsonSchemaGenerator {
             Field field = entry.getValue();
             Method method = entry.getKey();
             ObjectNode prop = generatePropertySchema(type, method, field);
-            if (prop != null) {
+            if (prop != null && field != null) {
                 addPropertyToSchema(schema, field, method, prop);
             }
         }
@@ -536,7 +536,7 @@ public abstract class JsonSchemaGenerator {
             }
         }
 
-        if (fieldName == null) {
+        if (fieldName == null || "".equals(fieldName)) {
             return null;
         }
 
